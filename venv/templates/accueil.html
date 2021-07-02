@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title%}
+
+Accueil-Pricer
+
+{% endblock title%}
+
+{% block  content %}
+<br>
+<br>
+<br>
+<br>
+
+<center><img src="{{url_for('static', filename='logo.png')}}"  width="500px" length="500px" /></center>
+
+<footer>
+<br>
+    <img src="{{url_for('static', filename='mail.png')}}"  width="30px" length="30px" />
+<span id="et-info-email">info@virtua-networks.com</span> |
+    <img src="{{url_for('static', filename='telephone.png')}}"  width="20px" length="20px" />
+<span id="et-info-phone">+33 (0) 1 86 95 94 95</span>
+<br>
+
+</footer>
+{% endblock content %}
+

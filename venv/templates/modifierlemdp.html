@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+ {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+        <p>{{msg}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% block title%}
+
+Modifier le mot de passe
+
+{% endblock title%}
+{% block content%}
+<center>
+    <form action={{url_for("modifierlemdp")}} method="POST">
+    <table>
+        <tr>
+            <td>Ancien mot de passe: </td>
+            <td><input type="password"   name="mdp" placeholder="Entrer l'ancien mot de passe" minlength="8" required></td>
+        </tr>
+        <tr>
+            <td>Nouveau mot de passe: </td>
+            <td><input type="password"   name="newmdp" placeholder="Entrer le nouveau mot de passe" minlength="8" required></td>
+        </tr>
+        <tr>
+            <td>Confirmation nouveau Mot de passe: </td>
+            <td><input type="password"  name="newmdp_" placeholder="confirmer le nouveau mot de passe" minlength="8" required></td>
+        </tr>
+
+    <tr>
+            <td></td>
+            <td><input class="btn btn-outline-secondary" type="submit"  value="Modifier le mot de passe"></td>
+        </tr>
+    </form>
+    </table>
+</center>
+{% endblock content%}

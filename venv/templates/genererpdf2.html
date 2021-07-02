@@ -1,0 +1,153 @@
+
+<html>
+<head>
+     <meta charset="UTF-8">
+    <link rel="icon" href="{{url_for('static', filename='LogoVirtuaNetworks.ico')}}"  />
+    <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+    body{
+    font-family : 'Open Sans';
+    border: 10px #eee solid;
+    color: brown;
+    color: black;
+    padding: 50px
+     }
+
+     .encadrer-un-contenu{
+     border: 1px solid black;
+     padding: 5px;
+     }
+  </style>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/stylepdf.css') }}">
+</head>
+<body>
+        <div align = "left"><img src="/home/camille/vnetx/pricer/venv/static/logo.png" width="70px" length="70px"> </div>
+        <center><h1>DEVIS</h1></center>
+        <br>
+        <div align="left">
+        Virtua Networks
+        <br>
+        24 rue des Champoulains
+        <br>
+        89000, Auxerre
+        <br>
+        SIRET :
+        <br>
+        Num. TVA :
+        <br>
+        Tel : 01 86 95 94 95
+        <br>
+
+
+        <div align="right">
+            {{client_.nom}} {{client_.prenom }}
+        <br>
+            {{client_.email if not None}}
+        <br>
+            {{client_.adresse if client_.adresse else ''}}
+        <br>
+            {{client_.code_postal if client_.code_postal  else ''}}
+        <br>
+            {{client_.ville if client_.code_postal  else ''}}
+        <br>
+            {{client_.pays if client_.pays else ''}}
+        <br>
+            {{client_.tel if client_.tel else ''}}
+        </div>
+        <br>
+        commande numéro : {{new_commande.numero}}
+        <br>
+        <br>
+         <hr>
+        <center><table cellspacing=4 cellpadding=4 width=100%>
+           <tr><strong>
+               <th><center>Reference produit</center></th>
+               <th><center>Nom du produit</center></th>
+               <th><center>Quantite</center></th>
+                <th><center>Prix unitaire du produit</center></th>
+               <th><center>Total</center></th></strong>
+           </tr>
+        {% for x in prixrec %}
+            <tr>
+                <td><center>{{x[0]}}</center></td>
+                <td><center>{{x[3]}}</center></td>
+                <td><center>{{x[1]}}</center></td>
+                <td><center>{{x[4]}} €</center></td>
+                <td><center>{{x[5]}} €</center></td>
+           </tr>
+        {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><center><b>TOTAL PAR MOIS : {{TOTAL_PRIXREC}} € </b></center></td>
+            </tr>
+
+
+
+{% if prixpasrec != [] %}
+
+
+
+{% for x in prixpasrec %}
+       <tr>
+                <td><center>{{x[0]}}</center></td>
+                <td><center>{{x[3]}}</center></td>
+                <td><center>{{x[1]}}</center></td>
+                <td><center>{{x[4]}} €</center></td>
+                <td><center>{{x[5]}} €</center></td>
+           </tr>
+{% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        <td><center><b> À payer une fois  : {{TOTAL_PRIXPASREC}}€</b></center></td>
+        </tr>
+
+
+{% endif %}
+
+  </table></center>
+
+<br>
+
+        {% if TOTAL_PRIXREC != TOTAL_REDUC_PRIXREC %}
+        <br>
+        <hr>
+        <br>
+        <div align="right">
+            <span class="encadrer-un-contenu">
+                TOTAL PAR MOIS APRES REDUCTION: {{TOTAL_REDUC_PRIXREC}}€
+             </span>
+            <br>
+            <br>
+            {% if LL != [] %}
+            <span class="encadrer-un-contenu">
+                TOTAL A PAYER UNE FOIS APRES REDUCTION : {{TOTAL_REDUC_PRIXPASREC}} €
+            </span>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <br>
+        <br>
+        <br>
+
+
+        <br>
+
+        <br>
+        <br>
+        <br>
+        <div align="left">Date et Signature Virtua Networks</div><div align="right">Date et Signature Client</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% extends "admin.html" %}
+{% block content%}
+
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+        <p>{{msg}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<br>
+<br>
+<center>
+<h1>Ajouter un produit</h1>
+<table class="col-md-"   width="70%">
+        <tr>
+            <form action="{{url_for('ajouterproduit')}}" method="POST">
+                <td></td>
+                <th>Nom :<input name="nom_produit" placeholder="NOM" type="text" ></th>
+                <th>Prix :<input name="prix_produit" placeholder="Prix" type="text" ></th>
+                <th>Recurrence paiement : <input name="recurrence_produit" placeholder="recurrence paiment" type="number" value = "{{1 or 0}}" required></th>
+                <th>Ordre :<input name="ordre_produit" placeholder="Ordre d'affichage" type="number" value = "{{number if number}}"></th>
+                <th>Catégorie :<input name="categorie_produit" placeholder="id categorie" type="number" min=0 value ="{{number if number}}" required></th>
+                <th>Sous catégorie :<input name="souscategorie_produit" placeholder="id sous categorie" type="number" min=0 value ="{{number if number}}" required></th>
+                <th>Valider :<input type="submit" name="ajouter" value="ajouter produit"></th>
+            </form>
+        </tr>
+</table>
+<br>
+<br>
+<br>
+<h1>Liste des produits </h1>
+
+{%for cat in L %}
+{% if cat != [] %}
+<br>
+<br>
+<h3>{{cat[0][3]}}</h3>
+    <div class="col-md-9">
+        <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><center>ID</center></th>
+            <th><center>Nom</center></th>
+            <th><center>Ordre d'affichage</center></th>
+            <th><center>Prix Unitaire</center></th>
+            <th><center>Recurrence paiement (1=mensuel/0=une seule fois) </center></th>
+            <th><center>Catégorie</center></th>
+            <th><center>Catégorie id  </center></th>
+            <th><center>Sous Catégorie</center></th>
+            <th><center>Sous Catégorie id</center></th>
+            <th><center>Remise</center></th>
+
+
+
+        </tr>
+    </thead>
+
+
+{% for x in cat %}
+
+
+    <tr>
+        <td><center>{{x[0]}}</center></td>
+        <td><center>{{x[1]}}</center></td>
+        <td><center>{{x[9]}}</center></td>
+        <td><center>{{x[2]}} €</center></td>
+        <td><center>{{x[10]}}</center></td>
+        <td><center>{{x[3]}}</center></td>
+        <td><center>{{x[4]}}</center></td>
+        <td><center>{{x[5]}}</center></td>
+        <td><center>{{x[6]}}</center></td>
+        <td><center>{{x[7]}}</center></td>
+
+        <td><form action="{{url_for('supprimerproduit' , id = x[0] )}}" method="GET"> <input type="submit" name ="suppr" value="supprimer"></form></td>
+        <td><form action="{{url_for('modifierproduit' , id = x[0] )}}" method="GET"> <input type="submit" name ="modifier" value="modifier"></form></td>
+        <form action="{{url_for('changerordre' , id = x[0] )}}" method="POST"><td><input name="ordre" placeholder="Ordre d'affichage" type="number" value = "{{number if number}}"> </td>
+            <td><input type="submit" name ="modifierordre " value="modifier l'ordre"></td></form>
+
+
+    </tr>
+
+{% endfor %}
+
+{% endif %}
+       </table>
+    </div>
+
+<br>
+
+{% endfor %}
+
+
+ </center>
+
+{% endblock content %}

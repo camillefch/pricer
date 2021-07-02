@@ -1,0 +1,53 @@
+{% extends "admin.html" %}
+{% block content %}
+
+
+<h1> Produit  : {{x.nom}} |    id :  {{x.id}}</h1>
+
+    <table>
+        <form action="{{url_for('modifierproduit' , id = x.id )}}" method="POST">
+        <tr>
+            <td><strong>Nom :</strong>  {{x.nom}} </td>
+            <td><input  name="nom" id="nom" placeholder="nouveau nom " type="text" ></td>
+        </tr>
+        <tr>
+            <td><strong>Prix :</strong>  {{x.prix}}€ </td>
+            <td><input  name="prix" id="prix" placeholder="nouveau prix " type="text" ></td>
+        </tr>
+        <tr>
+            <td><strong>Recurrence paiement :</strong>  {{x.recurrence}} </td>
+            <td><input  name="recurrence" id="recurrence" placeholder="nouvel recurrence "  type="number" min=0 max=1 value="{{number if number}}" ></td>
+        </tr>
+        <tr>
+            <td><strong>Remise :</strong> : {{x.remise}}</td>
+            <td><input  name="remise" id="remise" placeholder="nouvelle remise " type="text" ></td>
+        </tr>
+        <tr>
+            <td><strong>Ordre d'affichage :</strong> {{x.ordre}}</td>
+            <td><input  name="ordre" id="ordre" placeholder="changer ordre d'affichage" type="number" value="{{number if number}}" min="0" ></td>
+        </tr>
+        <tr>
+            <td><strong>Categorie :</strong> {{x.categorie.nom}} ; id : {{x.categorie.id}} </td>
+            <td><input  name="categorie" id="categorie" placeholder="nouvelle categorie"  type="number" value="{{number if number}}" min="0" ></td>
+        </tr>
+        <tr>
+            <td><strong>Sous-categorie : </strong>  {{x.sous_categorie.nom}} ; id : {{x.sous_categorie.id}} </td>
+            <td><input  name="souscategorie" id="souscategorie" placeholder="nouvelle sous-categorie  " type="number" value="{{number if number}}" min="0" ></td>
+        </tr>
+        <tr>
+            <td>  <strong>Description :</strong>  {{x.description}}</td>
+            <td><input name="description" id="description" placeholder="nouvelle description" type="text" rows="3"></td>
+        </tr>
+        <tr>
+            <td><button type="submit" class="btn btn-primary">Modifier les informations </button></td>
+        </tr>
+        </form>
+          <tr>
+              <form action="{{url_for('adminproduits' )}}" method="GET">
+            <td><button type="submit" class="btn btn-primary">Retour à la page produits </button></td>
+        </tr>
+    </table>
+
+
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Connexion
+
+{% endblock title %}
+
+
+{% block content%}
+
+<center>
+<hr>
+<form action="{{url_for('inscription')}}" method="GET">
+    <p><input class="btn btn-outline-secondary" type="submit" value="Je n'ai pas encore de compte"></p></form>
+<hr>
+<br><br>
+
+Se connecter :
+<form action="{{url_for('connexion')}}" method="POST">
+    <input name="email" placeholder="entrer email" type="email" value="{{email if email}}", required>
+    <br>
+    <input type="password" id = "pass"  name="password" placeholder="entrer le mot de passe" minlength="8" required>
+    <br>
+    <p><input  class="btn btn-outline-secondary" type="submit" value="Se connecter"></p>
+</form>
+</center>
+<footer>
+<br>
+    <img src="{{url_for('static', filename='mail.png')}}"  width="30px" length="30px" />
+<span id="et-info-email">info@virtua-networks.com</span> |
+    <img src="{{url_for('static', filename='telephone.png')}}"  width="20px" length="20px" />
+<span id="et-info-phone">+33 (0) 1 86 95 94 95</span>
+<br>
+
+</footer>
+{% endblock content%}
+

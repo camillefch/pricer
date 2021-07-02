@@ -1,0 +1,37 @@
+class Commande_produit(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    commande_id = db.Column(db.Integer, db.ForeignKey('commande.id'))
+    produit_id = db.Column(db.Integer, db.ForeignKey('produit.id'))
+    quantite = db.Column(db.Integer)
+
+
+    commandesproduits = db.relationship('Commande_Produit', backref='produit')
+    
+        
+        
+    commandesproduits = db.relationship('Commande_Produit', , backref='commande')
+    
+    
+       ##creation produits_commandes
+        for x in L :
+            quantite = x[1]
+            id_produit = x[2]
+            id_commande = new_commande.id
+            new_commande_produit = Commande_Produit(commande_id = id_commande, produit_id = id_produit, quantite = quantite)
+            db.session.add(new_commande_produit)
+        db.session.commit()
+        ##creationpdf
+        
+        
+    @app.route("/admincommandeproduit", methods = ["POST", "GET"])
+    def admincommandeproduit():
+    commandes = Commande.query.all()
+    produits = Produit.query.all()
+    commande_produits = Commande_Produit.query.all()
+    return "pas encore fait"
+    
+    
+    commande_produit = db.Table("commande_produit",
+                            db.Column('commande_id', db.Integer, db.ForeignKey('commande.id'), primary_key=True),
+                            db.Column('produit_id', db.Integer, db.ForeignKey('produit.id'), primary_key=True),
+                            db.Column('quantite', db.Integer))

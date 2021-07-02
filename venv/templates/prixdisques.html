@@ -1,0 +1,81 @@
+{% extends 'base.html'%}
+{% block title%}
+
+Prix des disques
+
+{% endblock title%}
+{% block content %}
+<center>
+<h1>Prix SAN - Disque</h1>
+<div class="col-md-3">
+<table class="table align-middle">
+    <tr>
+        <th><center>Volume en GO</center></th>
+        <th><center>Prix GO</center></th>
+        <th><center>Prix par mois</center></th>
+    </tr>
+    {%for i in range(14)%}
+    <tr>
+        <td><center>{{Volume[i]}}</center></td>
+        <td><center>{{PrixGOSAN[i][0]}}€</center></td>
+        <td><center>{{PrixGOSAN[i][1]}}€</center></td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<h1>Prix Backup Local</h1>
+<div class="col-md-3">
+<table class="table align-middle">
+    <tr>
+        <th><center>Volume en GO</center></th>
+        <th><center>Prix GO</center></th>
+        <th><center>Prix par mois</center></th>
+
+    </tr>
+    {%for i in range(14)%}
+    <tr>
+        <td><center>{{Volume[i]}}</center></td>
+        <td><center>{{LOCAL[i][0]}}€</center></td>
+        <td><center>{{LOCAL[i][1]}}€</center></td>
+    </tr>
+    {% endfor %}
+
+</table >
+</div>
+
+<BR>
+<BR>
+<hr>
+<br>
+<br>
+<h1>Prix Backup Distant</h1>
+<div class="col-md-3">
+<table class="table align-middle">
+    <tr>
+        <th><center>Volume en GO</center></th>
+        <th><center>Prix GO</center></th>
+        <th><center>Prix par mois</center></th>
+    </tr>
+    {%for i in range(14)%}
+    <tr>
+        <td><center>{{Volume[i]}}</center></td>
+        <td><center>{{DISTANCE[i][0]}}€</center></td>
+        <td><center>{{DISTANCE[i][1]}}€</center></td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+
+</center>
+
+
+{% endblock content%}

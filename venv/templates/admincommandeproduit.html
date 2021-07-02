@@ -1,0 +1,45 @@
+{% extends "admin.html" %}
+{% block content%}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+        <p>{{msg}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+    <table  cellspacing=4 cellpadding=4 width=60%>
+
+        <thead>
+        <tr>
+            <th colspan="1"><center>ID commande</center></th>
+            <th colspan="1"><center>numéro de commande</center></th>
+            <th colspan="1"><center>id produit</center></th>
+            <th colspan="1"><center>nom produit</center></th>
+            <th colspan="1"><center>quantite</center></th>
+            <th colspan="1"></th>
+        </tr>
+    </thead>
+
+{% for x in L %}
+
+    <tr>
+
+        <td colspan="1"><center>{{x[0]}}</center></td>
+        <td colspan="1"><center>{{x[1]}}</center></td>
+        <td colspan="1"><center>{{x[2]}}</center></td>
+        <td colspan="1"><center>{{x[3]}}</center></td>
+        <td colspan="1"><center>{{x[4]}}</center></td>
+
+
+
+
+  </tr>
+{% endfor %}
+      </table>
+
+
+
+{% endblock content %}

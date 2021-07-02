@@ -1,0 +1,63 @@
+{% extends "base.html"%}
+
+{% block title%}
+Modifier le profil
+
+{% endblock title%}
+{% block content %}
+<form action="{{url_for('modifierprofil')}}" method="POST">
+<table width = 80%>
+    <tr>
+        <th>Infos actuelles</th>
+        <th>Nouvelles infos</th>
+    </tr>
+
+    <tr>
+        <td>Nom : {{client.nom}}</td>
+        <td><input name="nom" placeholder="Entrer votre nom" type="text"></td>
+    </tr>
+
+    <tr>
+        <td>Prenom : {{client.prenom}}</td>
+        <td><input name="prenom" placeholder="Entrer votre prenom" type="text"></td>
+    </tr>
+    <tr>
+        <td>Adresse : {{client.adresse}}</td>
+        <td><input name="adresse" placeholder="Entrer votre nom" type="text" ></td>
+    </tr>
+    <tr>
+        <td>Ville: {{client.ville}} </td>
+        <td><input name="ville" placeholder="Entrer votre ville" type="text"></td>
+    </tr>
+	   <tr>
+        <td>Code Postal: {{client.code_postal}} </td>
+        <td><input name="code_postal" placeholder="Entrer votre code postal" type="text" ></td>
+    </tr>
+    <tr>
+        <td>Pays: {{client.pays}} </td>
+        <td><input name="pays" placeholder="Entrer votre pays" type="text" ></td>
+    </tr>
+
+    <tr>
+        <td>Numéro de téléphone: {{client.tel}}</td>
+        <td><input name="tel" placeholder="Entrer votre numéro de téléphone " type="tel" value="{{tel if tel}}" ></td>
+    </tr>
+</table>
+    <p><input class="btn btn-outline-secondary" type="submit" value="modifier"></p>
+</form>
+<br>
+<hr>
+<br>
+<form action="{{url_for('modifierlemdp')}}" method="GET"><p><input class="btn btn-outline-secondary" type="submit" value="Modifier le mot de passe"></p></form>
+
+
+<footer>
+<br>
+    <img src="{{url_for('static', filename='mail.png')}}"  width="30px" length="30px" />
+<span id="et-info-email">info@virtua-networks.com</span> |
+    <img src="{{url_for('static', filename='telephone.png')}}"  width="20px" length="20px" />
+<span id="et-info-phone">+33 (0) 1 86 95 94 95</span>
+<br>
+
+</footer>
+{% endblock content %}

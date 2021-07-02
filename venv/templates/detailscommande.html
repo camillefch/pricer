@@ -1,0 +1,34 @@
+{% extends 'admin.html'%}
+{% block content %}
+<html>
+<br>
+client : {{nom_client}} {{prenom_client}}
+<br>
+numero de commande : {{numero_commande}}
+<br>
+<br>
+<hr>
+<br>
+<table cellspacing=4 cellpadding=4 width=60%>
+   <tr>
+       <th>ID Produit</th>
+       <th>Nom produit</th>
+       <th>Prix</th>
+       <th>Quantite</th>
+       <th>total</th>
+   </tr>
+{% for x in L %}
+    <tr>
+        <td>{{x[0]}}</td>
+        <td>{{x[1]}}</td>
+        <td>{{x[2]}} €</td>
+        <td>{{x[3]}}</td>
+        <td>{{x[4]}} €</td>
+   </tr>
+{% endfor %}
+</table>
+</html>
+<html>
+<br>
+    TOTAL : {{TOTAL}} €
+{% endblock content%}

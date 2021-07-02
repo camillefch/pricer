@@ -1,0 +1,44 @@
+{% extends "admin.html" %}
+{% block content%}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+        <p>{{msg}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+    <table  cellspacing=4 cellpadding=4 width=60%>
+
+        <thead>
+        <tr>
+            <th colspan="1"><center>ID categorie</center></th>
+            <th colspan="1"><center>Nom Sous-catégorie</center></th>
+        </tr>
+    </thead>
+
+{% for x in L %}
+
+    <tr>
+
+        <td colspan="1"><center>{{x[0]}}</center></td>
+        <td colspan="1"><center>{{x[1]}}</center></td>
+        <td colspan="1"> <form action="{{url_for('supprimersouscategorie', id = x[0])}}" type = "GET"><input type=submit name="supprimer sous-categorie" value="supprimer la sous categorie"></form>
+
+{% endfor %}
+      </table>
+
+
+<hr>
+<strong>Ajouter une sous catégorie</strong>
+            <form action="{{url_for('ajoutersouscategorie')}}" method="POST">
+                Nom :
+                    <input name="nom" placeholder="nom" type="text" ></th>
+                    <input type="submit" name="ajouter" value="ajouter sous-categorie"></th>
+            </form>
+        </tr>
+</table>
+<hr>
+
+{% endblock content %}

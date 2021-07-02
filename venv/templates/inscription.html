@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title%}
+
+Inscription
+
+{% endblock title%}
+
+{% block content%}
+
+<hr>
+<form action="{{url_for('connexion')}}" method="GET">
+	<p><input type="submit" class="btn btn-outline-secondary" value="j'ai déjà un compte"></p>
+</form>
+<hr>
+<br>
+
+<form action="{{url_for('inscription')}}" method="POST">
+	<TABLE width="40%">
+		<tr>
+			<th></th>
+			<th></th>
+		</tr>
+
+		<tr>
+			<td>Nom :</td>
+			<td><input name="nom" placeholder="Entrer votre nom" type="text", required ></td>
+		</tr>
+		<tr>
+			<td>Prénom : </td>
+			<td><input name="prenom" placeholder="Entrer votre prenom" type="text", required ></td>
+		</tr>
+		<tr>
+			<td>Adresse : </td>
+			<td><input name="adresse" placeholder="Entrer votre adresse" type="text", required ></td>
+		</tr>
+		<tr>
+			<td>Ville : </td>
+			<td><input name="ville" placeholder="Entrer votre ville" type="text", required ></td>
+		</tr>
+		<tr>
+			<td>Pays : </td>
+			<td><input name="pays" placeholder="Entrer votre pays" type="text", required ></td>
+		</tr>
+		<tr>
+			<td>Code Postal : </td>
+			<td><input name="code postal" placeholder="Entrer votre code postal" type="text", required ></td>
+		</tr>
+		<tr>
+			<td>Numéro de téléphone : </td>
+			<td><input name="tel" placeholder="Entrer votre numéro de téléphone " type="tel", required ></td>
+		</tr>
+		<tr>
+			<td> Email :</td>
+    		<td><input name="email" placeholder="Entrer votre email" type="email" value="{{email if email}}", required></td>
+		</tr>
+		<tr>
+			<td> Mot de passe : </td>
+    		<td><input type="password" id = "pass"  name="password" placeholder="minimum 8 caractères" minlength="8" required></td>
+		</tr>
+		<tr>
+			<td>Confirmation mot de passe :</td>
+			<td><input type="password" id = "pass_"  name="password_confirmation" placeholder="minimum 8 caractères" minlength="8" required></td>
+		</tr>
+	</TABLE>
+
+	<br>
+	<br>
+    <p><input class="btn btn-outline-secondary" type="submit" value="s'inscrire"></p>
+
+</form>
+<footer>
+<br>
+    <img src="{{url_for('static', filename='mail.png')}}"  width="30px" length="30px" />
+<span id="et-info-email">info@virtua-networks.com</span> |
+    <img src="{{url_for('static', filename='telephone.png')}}"  width="20px" length="20px" />
+<span id="et-info-phone">+33 (0) 1 86 95 94 95</span>
+<br>
+
+</footer>
+
+{% endblock content%}
+</body>
+</html>

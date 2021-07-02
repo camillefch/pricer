@@ -1,0 +1,47 @@
+{% extends "admin.html" %}
+{% block content %}
+{%for cat in L %}
+{% if cat != [] %}
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne{{cat[0][4]}}">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{cat[0][4]}}" aria-expanded="false" aria-controls="collapseOne{{cat[0][4]}}">
+        {{cat[0][4]}}
+      </button>
+    </h2>
+    <div id="collapseOne{{cat[0][4]}}" class="accordion-collapse collapse" aria-labelledby="headingOne{{cat[0][4]}}" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+          <center>
+        <form action="{{url_for('adminpdf', id_client=id_client)}}" method="POST">
+          <table class="table table-striped">
+             <tr>
+                 <th>Produit</th>
+                 <th>Description</th>
+                 <th>Prix</th>
+                 <th>Quantité</th>
+             </tr>
+          {% for x in cat %}
+              <tr>
+                 <td>{{x[1]}}</td>
+                  <td>{{x[2]}}</td>
+                 <td>{{x[3]}}€</td>
+                 <td><input type="number" name="{{x[0]}}" placeholder="entrer quantité" min="0" value ="{{number if number}}"></td>
+             </tr>
+          {% endfor %}
+          </table>
+          <input class="btn btn-outline-secondary"  type="submit" value="calculer devis">
+        </form></center>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endif %}
+{% endfor %}
+
+
+
+
+</div>
+
+{% endblock content%}

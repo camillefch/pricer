@@ -1,0 +1,86 @@
+{% extends "admin.html" %}
+
+.tableau {
+  table-layout: fixed;
+  width: 120px;
+  border: 1px solid red;
+}
+{% block content%}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+        <p>{{msg}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+    <small>
+    <table classe="tableau">
+        <thead>
+        <tr>
+            <th colspan="1"><center>ID</center></th>
+            <th colspan="1"><center>Nom</center></th>
+            <th colspan="1"><center>Prénom</center></th>
+            <th colspan="1"><center>Email</center></th>
+            <th colspan="1"><center>Réduction</center></th>
+            <th colspan="1"><center>Administrateur</center></th>
+            <th colspan="1"></th>
+            <th colspan="1"></th>
+            <th colspan="1"></th>
+            <th colspan="1"></th>
+        </tr>
+        </thead>
+
+{% for x in L %}
+
+    <tr>
+        <td colspan="1"><center>{{x[0]}}</center></td>
+        <td colspan="1"><center>{{x[1]}}</center></td>
+        <td colspan="1"><center>{{x[2]}}</center></td>
+        <td colspan="1"><center>{{x[3]}}</center></td>
+        <td colspan="1"><center>{{x[4]}}</center></td>
+        <td colspan="1"><center>{{x[5]}}</center></td>
+        <td colspan="1"><form action="{{url_for('supprimerclient' , id = x[0] )}}" method="GET"><p> <input type="submit" name ="suppr" value="supprimer"></p></form></td>
+        <form action="{{url_for('modifierreduction' , id = x[0] )}}" method="POST">
+           <td colspan="1"> <p><input  name="reduction" placeholder="nouvelle reduction " type="text" ></p><td>
+            <td colspan="1"><p><input type="submit" name="modifiereduction" value="modifier la réduction "></p> </td>
+        </form>
+        <form action="{{url_for('modifieradmin' , id = x[0] )}}" method="GET">
+            {% if x[5]=='oui' %}
+            <td colspan="1"><p><input type="submit" name="enleveradmin" value="Enlever les droits d'administrateur" ></p></td>
+            {% else %}
+            <td colspan="1"><p><input type="submit" name="donneradmin" value="Donner les droits d'administrateur" ></p> </td>
+            {% endif %}
+        </form>
+        <form action="{{url_for('admindevis' , id_client = x[0] )}}" method="GET">
+            <td><p><input type="submit" name="faireundevis" value="Lui générer un devis"></p> </td>
+        </form>
+  </tr>
+{% endfor %}
+        <br>
+        <form action="{{url_for('ajouterclient')}}" method="POST">
+            <tr>
+                <td></td>
+                <td><input name="nom_client" placeholder="Nom" type="text", required></td>
+                <td><input name="prenom_client" placeholder="Prenom" type="text" required ></td>
+                 <td><input name="email_client" placeholder="email" type="email"   required value={{email if email}}></td>
+                <td><input name="reduction_client" placeholder="reduction" type="float" required ></td>
+                <td></td>
+
+
+
+        </tr>
+        <tr>
+            <td></td>
+            <td><input name="mdp" id="mdp" type="password" placeholder="Entrer un mot de passe" minlength="8" required> </td>
+            <td><input name="mdp_"  id="mdp_"type="password" placeholder="Confirmer le mot de passe" minlength="8" required> </td>
+            <td colspan="1"><p><input type="submit" name="ajouter" value="ajouter client"></p></td>
+        </tr>
+        </form>
+      </table>
+</small>
+
+
+
+{% endblock content %}

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title%}
+Fon VPN SSL
+{% endblock title%}
+
+
+{% block head %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="PhpSpreadsheet, https://github.com/PHPOffice/PhpSpreadsheet"><meta name="author" content="VNETX" />
+
+<style type="text/css">
+      html { font-family:Calibri, Arial, Helvetica, sans-serif; font-size:11pt; background-color:white }
+      a.comment-indicator:hover + div.comment { background:#ffd; position:absolute; display:block; border:1px solid black; padding:0.5em }
+      a.comment-indicator { background:red; display:inline-block; border:1px solid black; width:0.5em; height:0.5em }
+      div.comment { display:none }
+      table { border-collapse:collapse; page-break-after:always }
+      .gridlines td { border:1px dotted black }
+      .gridlines th { border:1px dotted black }
+      .b { text-align:center }
+      .e { text-align:center }
+      .f { text-align:right }
+      .inlineStr { text-align:left }
+      .n { text-align:right }
+      .s { text-align:left }
+      td.style0 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:white }
+      th.style0 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:white }
+      td.style1 { vertical-align:bottom; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:1px solid #000000 !important; font-weight:bold; color:#000000; font-family:'Avenir'; font-size:10pt; background-color:white }
+      th.style1 { vertical-align:bottom; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:1px solid #000000 !important; font-weight:bold; color:#000000; font-family:'Avenir'; font-size:10pt; background-color:white }
+      td.style2 { vertical-align:bottom; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:1px solid #000000 !important; color:#000000; font-family:'Avenir'; font-size:11pt; background-color:white }
+      th.style2 { vertical-align:bottom; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:1px solid #000000 !important; color:#000000; font-family:'Avenir'; font-size:11pt; background-color:white }
+      td.style3 { vertical-align:bottom; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:1px solid #000000 !important; color:#000000; font-family:'Avenir'; font-size:10pt; background-color:white }
+      th.style3 { vertical-align:bottom; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:1px solid #000000 !important; color:#000000; font-family:'Avenir'; font-size:10pt; background-color:white }
+      td.style4 { vertical-align:bottom; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:1px solid #000000 !important; color:#000000; font-family:'Avenir'; font-size:11pt; background-color:white }
+      th.style4 { vertical-align:bottom; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:1px solid #000000 !important; color:#000000; font-family:'Avenir'; font-size:11pt; background-color:white }
+      td.style5 { vertical-align:bottom; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:1px solid #000000 !important; color:#000000; font-family:'Avenir'; font-size:11pt; background-color:#C2D69B }
+      th.style5 { vertical-align:bottom; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:1px solid #000000 !important; color:#000000; font-family:'Avenir'; font-size:11pt; background-color:#C2D69B }
+      table.sheet0 col.col0 { width:42pt }
+      table.sheet0 col.col1 { width:42pt }
+      table.sheet0 col.col2 { width:42pt }
+      table.sheet0 tr { height:15pt }
+    </style>
+{% endblock head %}
+
+{% block content%}
+<center>
+<html>
+<form action="{{url_for('devis')}}"  method="POST">
+<div class="col-md-8">
+        <table class="table align-middle">
+               <tr>
+                   <th>Produit</th>
+                   <th>Description</th>
+                   <th>Prix Unitaire</th>
+                   <th> Quantite</th>
+
+
+               </tr>
+
+            {% for produit in result %}
+
+                <tr class="align-top">
+                   <td>{{produit.nom}}</td>
+                    <td>{{produit.description}}</td>
+                   <td>{{produit.prix}}€</td>
+                   <td><input type="number" name="{{produit.id}}" placeholder="entrer quantité" min="0" value ="{{number if number}}", required >
+                </td>
+               </tr>
+
+
+            {% endfor %}
+
+<br>
+</div>
+</table>
+    <input class="btn btn-outline-secondary" type="submit" value="calculer devis">
+    </form>
+</html>
+</center>
+
+
+
+<br>
+<br>
+Conditions générales de vente sur <a href="https://www.vnetx.com/cgv">https://www.vnetx.com/cgv</a>
+
+
+<footer>
+<br>
+    <img src="{{url_for('static', filename='mail.png')}}"  width="30px" length="30px" />
+<span id="et-info-email">info@virtua-networks.com</span> |
+    <img src="{{url_for('static', filename='telephone.png')}}"  width="20px" length="20px" />
+<span id="et-info-phone">+33 (0) 1 86 95 94 95</span>
+<br>
+
+</footer>
+{% endblock content %}
+
