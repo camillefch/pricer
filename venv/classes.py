@@ -30,6 +30,7 @@ class Sous_categorie(db.Model):
 class Categorie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(100), nullable=False)
+    remarques = db.Column(db.String(500))
 
     produits = db.relationship('Produit', backref='categorie')
 

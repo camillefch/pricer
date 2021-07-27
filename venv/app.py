@@ -166,7 +166,7 @@ def categories():
             products = Produit.query.filter_by(categorie_id=cat.id).all()
             for x in products:
                 cat_.append(
-                    [x.id, x.nom, x.description,x.prix, x.categorie.nom])
+                    [x.id, x.nom, x.description,x.prix, x.categorie.nom, x.categorie.remarques])
             L.append(cat_)
         print(len(L))
         return render_template("categories.html", **locals())
@@ -213,9 +213,9 @@ def devis():
     rec= [] ; pasrec=[] ; TOTAL_REC = 0 ; TOTAL_PASREC=0
     if request.method == "POST":
         for i in request.form:
-            req = request.form[i]
-            quantite = ast.literal_eval(req)
-            if quantite !="":
+            quantite = request.form[i]
+            if quantite!= "":
+                quantite = int(ast.literal_eval(quantite))
                 if quantite != 0 :
                     p = Produit.query.filter_by(id=i).first()
                     if p.recurrence == 1:
@@ -260,7 +260,6 @@ def devis():
                     total = round((float(quantite) * float(p.prix)), 2)
                     TOTAL_PASREC += total
                     pasrec.append([i, quantite, p.id, p.nom, p.prix, total])
-        print(pasrec)
         return render_template("devis.html", **locals())
         
         
@@ -275,10 +274,11 @@ def genererpdf2():
         ##infos pour le tableau
         ##Produits paiement reccurrent
         prixrec_=request.form["liste"]
+        print(prixrec_)
         prixrec_=eval(prixrec_)##transformer rec en liste
         prixrec=[]
         TOTAL_PRIXREC = 0
-        for x in prixrec:
+        for x in prixrec_:
             x = eval('x')
             prixrec.append(x)
             TOTAL_PRIXREC += x[5]
@@ -290,7 +290,7 @@ def genererpdf2():
         prixpasrec_ = eval(prixpasrec_)
         prixpasrec = [];
         TOTAL_PRIXPASREC = 0
-        for x in prixpasrec :
+        for x in prixpasrec_ :
             x = eval('x')
             prixpasrec_.append(x)
             TOTAL_PRIXPASREC += x[5]

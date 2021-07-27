@@ -15,6 +15,7 @@
         <tr>
             <th colspan="1"><center>ID categorie</center></th>
             <th colspan="1"><center>Nom catégorie</center></th>
+            <th colspan="1"><center>Remarques associées à la vente</center></th>
         </tr>
     </thead>
 
@@ -24,7 +25,10 @@
 
         <td colspan="1"><center>{{x[0]}}</center></td>
         <td colspan="1"><center>{{x[1]}}</center></td>
-        <td colspan="1"> <form action="{{url_for('supprimercategorie', id = x[0])}}" type = "GET"><input type=submit name="supprimercategorie" value="supprimercategorie"></form>
+        <td colspan="1"><center>{{x[2]}}</center></td>
+        <td colspan="1"> <form action="{{url_for('supprimercategorie', id = x[0])}}" method = "GET"><input type=submit name="supprimercategorie" value="supprimercategorie"></form></td>
+        <form action="{{url_for('modifierremarques', id = x[0])}}" method = "POST"><td colspan="1"> <input name="remarques" placeholder="nouvelles remarques" type="text" ></td>
+            <td colspan="1"> <input type=submit name="modifier" value="modifier les remarques"></td></form>
 
 {% endfor %}
       </table>

@@ -29,11 +29,16 @@ Catalogue
                  <td>{{x[1]}}</td>
                   <td>{{x[2]}}</td>
                  <td>{{x[3]}}€</td>
-                 <td><input type="number" name="{{x[0]}}" placeholder="entrer quantité" min="0" value ="{{number if number}}" required></td>
+                 <td><input type="number" name="{{x[0]}}" placeholder="entrer quantité" min="0" value ="{{number if number}}" ></td>
              </tr>
           {% endfor %}
           </table>
           <input class="btn btn-outline-secondary"  type="submit" value="calculer devis">
+            <br><br>
+            Remarques :
+            <br> {{cat[0][5]}}
+            <br>
+            Conditions générales de vente sur <a href="https://www.vnetx.com/cgv">https://www.vnetx.com/cgv</a>
         </form></center>
       </div>
     </div>

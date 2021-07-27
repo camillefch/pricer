@@ -152,7 +152,7 @@ def admincommandes():
     return render_template("admincommandes.html", **locals())
 
 
-@app.route("/admin/detailscommannde/<int:id>", methods=["GET"])
+@app.route("/admin/detailscommande/<int:id>", methods=["GET"])
 @login_required
 @admin_login_required
 def detailscommande(id):
@@ -208,7 +208,7 @@ def detailscommande(id):
     return render_template('detailscommande.html', **locals())
 
 
-@app.route("/admin/supprimercommannde/<int:id>", methods=["GET"])
+@app.route("/admin/supprimercommande/<int:id>", methods=["GET"])
 @login_required
 @admin_login_required
 def supprimercommande(id):
@@ -401,7 +401,7 @@ def admincategories():
         categories = Categorie.query.all()
         L = []
         for cat in categories:
-            L.append([cat.id , cat.nom])
+            L.append([cat.id , cat.nom, cat.remarques])
         return render_template("admincategories.html", **locals())
 
 @app.route("/admin/ajoutercategorie", methods=["POST"])
@@ -426,6 +426,16 @@ def supprimercategorie(id):
         db.session.commit()
         flash(f"La categorie (id = {id} ; nom ={nom}), a bien été supprimée")
         return redirect(url_for("admincategories"))
+
+@app.route("/admin/modifierremarques/<int:id>", methods=["POST"])
+@login_required
+@admin_login_required
+def modifierremarques(id):
+    cat = Categorie.query.filter_by(id=id).first()
+    remarque = request.form["remarques"]
+    cat.remarques = remarque
+    db.session.commit()
+    return redirect(url_for("admincategories"))
 
 @app.route("/admin/souscategories", methods=["GET", "POST"])
 @login_required
@@ -491,12 +501,12 @@ def adminpdf(id_client):
     ##infos pour le tableau
     prixrec = []; ##liste des produits paiement mensuel
     prixpasrec= [] ##liste des produits prix à payer une seule fois
-    TOTAL_PRIXREC = 0;
+    TOTAL_PRIXREC = 0
     TOTAL_PRIXPASREC = 0
     for i in request.form:
-        req = request.form[i]
-        quantite = ast.literal_eval(req)
-        if quantite != "":
+        quantite= request.form[i]
+        if quantite!= "":
+            quantite = int(ast.literal_eval(quantite))
             if quantite !=0 :
                 p = Produit.query.filter_by(id=i).first()
                 if p.recurrence == 1:
