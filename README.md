@@ -1,4 +1,19 @@
 # Pricer
+##Requirements
+
+
+Flask
+
+SQLAlchemy
+
+flask_sqlalchemy
+
+##installation et mise en route de l'application
+
+- lancer l'environnement virtuel : source ./bin/activate
+- installer la librairié flask_sqlalchemy avec pip si ce n'est pas fait
+- lancer l'application : python app.py
+
 
 ## 1. Base de données
 Produits : id, nom, catégorie_id, sous_categorie_id, prix, recurrence (à payer une fois ou mensuel), description, remise, ordre (affichage)
