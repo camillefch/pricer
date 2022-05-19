@@ -10,7 +10,7 @@ flask_sqlalchemy
 
 ## installation et mise en route de l'application
 
-- lancer l'environnement virtuel : source ./bin/activate
+- lancer l'environnement virtuel : source ./venv/bin/activate
 - installer la librairié flask_sqlalchemy avec pip si ce n'est pas fait
 - lancer l'application : python app.py
 
