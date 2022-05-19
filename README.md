@@ -1,5 +1,5 @@
 # Pricer
-##Requirements
+## Requirements
 
 
 Flask
@@ -8,7 +8,7 @@ SQLAlchemy
 
 flask_sqlalchemy
 
-##installation et mise en route de l'application
+## installation et mise en route de l'application
 
 - lancer l'environnement virtuel : source ./bin/activate
 - installer la librairié flask_sqlalchemy avec pip si ce n'est pas fait
